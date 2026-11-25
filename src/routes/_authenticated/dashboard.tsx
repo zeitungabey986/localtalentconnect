@@ -94,14 +94,20 @@ function DashboardPage() {
 
   async function updateAppStatus(appId: string, status: string) {
     const { error } = await supabase.from("applications").update({ status }).eq("id", appId);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success(`Application marked as ${status}`);
     queryClient.invalidateQueries({ queryKey: ["incoming-applications"] });
   }
 
   async function openCv(cvPath: string) {
     const { data, error } = await supabase.storage.from("cvs").createSignedUrl(cvPath, 120);
-    if (error || !data?.signedUrl) return toast.error("Could not open CV file.");
+    if (error || !data?.signedUrl) {
+      toast.error("Could not open CV file.");
+      return;
+    }
     window.open(data.signedUrl, "_blank", "noopener,noreferrer");
   }
 

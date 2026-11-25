@@ -45,7 +45,10 @@ function AuthPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim()) return toast.error("Please enter your email address.");
+    if (!email.trim()) {
+      toast.error("Please enter your email address.");
+      return;
+    }
     setBusy(true);
     setCheckEmailMsg(null);
     try {
@@ -89,7 +92,10 @@ function AuthPage() {
 
   async function handleGoogle() {
     const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
-    if (result.error) return toast.error(result.error.message);
+    if (result.error) {
+      toast.error(result.error.message);
+      return;
+    }
     if (!result.redirected) navigate({ to: "/dashboard" });
   }
 

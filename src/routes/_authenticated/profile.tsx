@@ -99,7 +99,10 @@ function ProfilePage() {
       })
       .eq("id", auth.user.id);
     setSaving(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success("Profile saved.");
     queryClient.invalidateQueries({ queryKey: ["auth-session-profile"] });
   }
@@ -112,7 +115,8 @@ function ProfilePage() {
     const { error: upErr } = await supabase.storage.from("cvs").upload(path, file, { upsert: true });
     if (upErr) {
       setUploading(false);
-      return toast.error(upErr.message);
+      toast.error(upErr.message);
+      return;
     }
     await supabase.from("profiles").update({ cv_path: path }).eq("id", auth.user.id);
     setUploading(false);

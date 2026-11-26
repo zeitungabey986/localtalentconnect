@@ -15,6 +15,13 @@
       "when": 1795609341882,
       "tag": "0001_cvs_storage_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795694086169,
+      "tag": "0002_restrict_forum_posts_select_policy",
+      "breakpoints": true
     }
   ]
 }

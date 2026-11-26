@@ -22,6 +22,13 @@
       "when": 1795694086169,
       "tag": "0002_restrict_forum_posts_select_policy",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1795694140285,
+      "tag": "0003_restrict_remaining_permissive_select_policies",
+      "breakpoints": true
     }
   ]
 }
